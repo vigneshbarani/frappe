@@ -1,0 +1,84 @@
+{% extends "templates/web.html" %}
+
+{% block meta_block %}
+	{% include "templates/includes/meta_block.html" %}
+{% endblock %}
+
+{% block page_content %}
+<div class="blog-container">
+	<article class="blog-content mb-3" itemscope itemtype="http://schema.org/BlogPosting">
+		<!-- begin blog content -->
+		<div class="blog-info">
+			<span class="text-center">
+				<h1 itemprop="headline" class="blog-header">{{ title }}</h1>
+				<p class="lead">
+					{{ blog_intro }}
+				</p>
+			</span>
+			
+			<div class="text-muted small meta-info">
+				{{ frappe.format_date(published_on) }}
+				{% if read_time %}
+					&middot;
+					{{ read_time }} min read
+				{% endif %}
+				{% if social_links %}
+				<div class="social-links">
+					{% for link in social_links %}
+						<a href="{{ link.url }}" class="fa fa-{{ link.icon }}" 
+							style='color:{{ link.color }}; background-color: {{ link.background }};' 
+							target="_blank"></a>
+					{% endfor %}
+				</div>
+				{% endif %}
+			</div>
+		</div>
+		<div itemprop="articleBody" class="longform blog-text mt-5">
+		{{ content }}
+		</div>
+		<!-- end blog content -->
+	</article>
+
+	{% if blogger_info %}
+	<hr class="my-5">
+	{% include "templates/includes/blog/blogger.html" %}
+	{% endif %}
+
+	{% if not disable_comments %}
+		<div class="blog-comments my-5">
+			{% include 'templates/includes/comments/comments.html' %}
+		</div>
+	{% endif %}
+
+</div>
+<script>
+	frappe.ready(() => frappe.set_search_path("/blog"))
+</script>
+{% endblock %}
+
+{% block style %}
+<style>
+.blog-container {
+	max-width: 720px;
+	margin: 0 auto;
+	font-size: 1.2rem;
+}
+.meta-info {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	flex-wrap: wrap;
+}
+.social-links {
+	margin-right: 0px;
+	margin-top: 1rem;
+}
+.social-links a { 
+	font-size: 1.25rem;
+	margin: 0 5px 0 0;
+	padding: 5px 0;
+	width: 2.5rem;
+	text-align: center;
+}
+</style>
+{% endblock %}

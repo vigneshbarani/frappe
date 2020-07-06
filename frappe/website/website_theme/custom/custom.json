@@ -1,0 +1,20 @@
+{
+ "button_gradients": 0,
+ "button_rounded_corners": 1,
+ "button_shadows": 0,
+ "creation": "2015-02-19 13:37:33.925909",
+ "custom": 0,
+ "custom_overrides": "",
+ "docstatus": 0,
+ "doctype": "Website Theme",
+ "font_properties": "400,500,600,700,800",
+ "idx": 26,
+ "modified": "2020-06-24 11:47:53.667515",
+ "modified_by": "Administrator",
+ "module": "Website",
+ "name": "Custom",
+ "owner": "Administrator",
+ "theme": "Custom",
+ "theme_scss": "",
+ "theme_url": ""
+}
